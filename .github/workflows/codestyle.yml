@@ -27,16 +27,16 @@ jobs:
 
       - name: Run typos
         run: |
-          typos .
+          uv run typos .
 
       - name: Run ruff linter
         run: |
-          ruff check .
+          uv run ruff check .
 
       - name: Run ruff formatting
         run: |
-          ruff format --check.
+          uv run ruff format --check.
 
       - name: Run pyrefly type checking
         run: |
-            pyrefly check .
+          uv run pyrefly check .
