@@ -1,0 +1,42 @@
+name: codestyle
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  codestyle:
+    runs-on: windows-latest
+    env:
+      PYTHONIOENCODING: utf-8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install Python 3.10
+        run: uv python install 3.10
+
+      - name: Install dependencies and package
+        run: uv sync
+
+      - name: Run typos
+        run: |
+          typos .
+
+      - name: Run ruff linter
+        run: |
+          ruff check .
+
+      - name: Run ruff formatting
+        run: |
+          ruff format --check.
+
+      - name: Run pyrefly type checking
+        run: |
+            pyrefly check .

@@ -1,0 +1,84 @@
+[project]
+name = "actions-job-parser"
+version = "0.1.0"
+description = "A Python utility to parse GitHub Actions workflows and extract a comprehensive list of job names as they appear at runtime."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pyyaml>=6.0.3",
+]
+
+[project.scripts]
+actions-job-parser = "actions_job_parser:main"
+ajp = "actions_job_parser:main"
+
+[build-system]
+requires = ["uv_build >= 0.8.17, <0.9.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+  # Pyflakes
+  "F",
+  # Pycodestyle
+  "E",
+  "W",
+  # Isort
+  "I",
+  # Comprehensions
+  "C4",
+  # Debugger
+  "T100",
+  # Pyupgrade
+  "UP",
+  # Flake8-pyi
+  "PYI",
+  # Bugbear
+  "B",
+  # Pylint
+  "PLE",
+  # Flake8-simplify
+  "SIM101",
+  # Flake8-use-pathlib
+  "PTH",
+  # Pygrep-hooks
+  "PGH004",
+  # Flake8-type-checking
+  "TC",
+  # Flake8-raise
+  "RSE",
+  # Refurb
+  "FURB",
+  # Flake8-future-annotations
+  "FA",
+  # Yesqa
+  "RUF100",
+]
+ignore = [
+  "E501", # line too long, duplicate with ruff fmt
+  "F401", # imported but unused, duplicate with pyright
+  "F841", # local variable is assigned to but never used, duplicate with pyright
+]
+
+[tool.pyrefly]
+project-includes = ["**/*"]
+project-excludes = [
+    "**/node_modules",
+    "**/__pycache__",
+    '**/*venv/**/*',
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.4.0",
+    "pyrefly>=0.41.3",
+    "ruff>=0.14.5",
+    "typos>=1.39.2",
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
