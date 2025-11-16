@@ -9,7 +9,7 @@ on:
 
 jobs:
   codestyle:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       PYTHONIOENCODING: utf-8
     steps:
@@ -35,7 +35,7 @@ jobs:
 
       - name: Run ruff formatting
         run: |
-          uv run ruff format --check.
+          uv run ruff format --check .
 
       - name: Run pyrefly type checking
         run: |
