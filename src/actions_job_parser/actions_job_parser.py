@@ -67,8 +67,6 @@ def parse_workflow_jobs(
     Args:
         file_path: The path to the workflow file to parse.
         repo_root: The root path of the repository.
-        all_workflows: A list of all found workflow files, used to find called workflows.
-        workflow_map: A map from workflow filename to its Path object for efficient lookups.
 
     Returns:
         A list of JobInfo objects parsed from the workflow.
