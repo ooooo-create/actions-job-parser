@@ -174,7 +174,8 @@ def main():
 
     # Iterate through each top-level workflow and parse its jobs
     for workflow_file in top_level_workflows:
-        logging.info(f"Parsing: {workflow_file.relative_to(repo_root)}...")
+        if not args.only_names:
+            logging.info(f"Parsing: {workflow_file.relative_to(repo_root)}...")
         jobs = parse_workflow_jobs(workflow_file, repo_root)
         for job_info in jobs:
             all_job_infos.add((job_info["workflow_name"], job_info["name"]))
