@@ -158,7 +158,8 @@ def main():
     logging.basicConfig(level=log_level, format="%(levelname)s: %(message)s")
 
     repo_root = Path(args.repo_root).resolve()
-    logging.info(f"Searching for workflow files in: {repo_root / '.github' / 'workflows'}")
+    if not args.only_names:
+        logging.info(f"Searching for workflow files in: {repo_root / '.github' / 'workflows'}")
 
     all_workflow_files = find_workflow_files(repo_root)
     all_job_infos: set[tuple[str, str]] = set()  # Use a set to automatically handle duplicates
