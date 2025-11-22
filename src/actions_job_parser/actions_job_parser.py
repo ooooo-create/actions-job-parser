@@ -89,7 +89,7 @@ def parse_workflow_jobs(
                 if "uses" in job_details:
                     uses_path = job_details["uses"]
                     if uses_path.startswith("./.github/workflows/"):
-                        reusable_workflow_path = Path(repo_root) / uses_path
+                        reusable_workflow_path = Path(repo_root) / uses_path[2:]
 
                         if reusable_workflow_path.exists():
                             caller_job_name = job_details.get("name", job_id)
