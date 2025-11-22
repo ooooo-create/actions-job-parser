@@ -166,7 +166,8 @@ def main():
 
     # Filter for top-level workflows: those that are not purely reusable.
     top_level_workflows = [wf for wf in all_workflow_files if not is_reusable_workflow(wf)]
-    logging.info(f"Found {len(top_level_workflows)} top-level workflows to parse.")
+    if not args.only_names:
+        logging.info(f"Found {len(top_level_workflows)} top-level workflows to parse.")
 
     # Iterate through each top-level workflow and parse its jobs
     for workflow_file in top_level_workflows:
